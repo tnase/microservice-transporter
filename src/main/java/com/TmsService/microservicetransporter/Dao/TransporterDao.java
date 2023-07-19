@@ -12,6 +12,7 @@ public interface TransporterDao {
     ResponseEntity<ResponseVo> getTransporter(UUID idTransporter);
     ResponseEntity<ResponseVo> lockOrUnlockTransporter(UUID idTransporter,Boolean lock);
     ResponseEntity<ResponseVo> updateTransporter(TransporterEntity transporter);
+    ResponseEntity<ResponseVo> deleteTransporter(UUID idTransporter);
 
 
 }

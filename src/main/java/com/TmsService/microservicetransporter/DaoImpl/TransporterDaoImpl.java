@@ -28,7 +28,7 @@ public class TransporterDaoImpl implements TransporterDao {
     @Override
     public ResponseEntity<ResponseVo> getTransporters() {
         ResponseVo responseVo=new ResponseVo();
-        responseVo.setVo(transporterRepository.findAll());
+        responseVo.setVo(transporterRepository.findTransportersNotDeleted());
         return ResponseEntity.ok(responseVo);
     }
 //retourne un transporter a partir de son id 
@@ -81,6 +81,21 @@ public class TransporterDaoImpl implements TransporterDao {
         }else{
             responseVo.setErrorsMsg(TransporterConstants.NULL_TRANSPORTER_OR_NOT_ID);
             responseVo.setVo(transporter);
+        }
+        return ResponseEntity.ok(responseVo);
+    }
+
+    @Override
+    public ResponseEntity<ResponseVo> deleteTransporter(UUID idTransporter) {
+        ResponseVo responseVo=new ResponseVo();
+        TransporterEntity transporter=transporterRepository.findById(idTransporter).isPresent()?transporterRepository.findById(idTransporter).get():null;
+        if(transporter==null){
+            responseVo.setWarningMsg(TransporterConstants.TRANSPORTER_NOT_FOUND);
+        }else{
+            transporter.setDate_deleted(new Date());
+            transporter.setDate_update(new Date());
+            transporterRepository.save(transporter);
+            responseVo.setSuccessMsg(TransporterConstants.SUCCESS_DELETE_TRANSPORTER);
         }
         return ResponseEntity.ok(responseVo);
     }

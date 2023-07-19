@@ -25,6 +25,11 @@ public class TransporterController {
         return transporterDao.getTransporter(idTransporter) ;
     }
 
+    @PutMapping("/{idTransporter}")
+    public  ResponseEntity deleteTransporter(@PathVariable UUID idTransporter){
+        return transporterDao.deleteTransporter(idTransporter) ;
+    }
+
     @PostMapping
     public ResponseEntity createTransporter(@RequestBody TransporterEntity transporter) {
         return transporterDao.addTransporter(transporter);
