@@ -13,6 +13,8 @@ public interface TransporterDao {
     ResponseEntity<ResponseVo> lockOrUnlockTransporter(UUID idTransporter,Boolean lock);
     ResponseEntity<ResponseVo> updateTransporter(TransporterEntity transporter);
     ResponseEntity<ResponseVo> deleteTransporter(UUID idTransporter);
+    ResponseEntity<ResponseVo> findByTva(String tva);
+
 
 
 }

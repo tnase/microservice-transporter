@@ -99,4 +99,15 @@ public class TransporterDaoImpl implements TransporterDao {
         }
         return ResponseEntity.ok(responseVo);
     }
+
+    @Override
+    public ResponseEntity<ResponseVo> findByTva(String tva) {
+        ResponseVo responseVo=new ResponseVo();
+        if(tva!=null){
+            responseVo.setVo(transporterRepository.findByTva(tva));
+        }else{
+            responseVo.setErrorsMsg(TransporterConstants.TRANSPORTER_NOT_FOUND);
+        }
+        return ResponseEntity.ok(responseVo);
+    }
 }

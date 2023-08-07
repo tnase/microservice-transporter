@@ -25,6 +25,11 @@ public class TransporterController {
         return transporterDao.getTransporter(idTransporter) ;
     }
 
+    @GetMapping("/find/{tva}")
+    public  ResponseEntity getTransporterByTva(@PathVariable String tva){
+        return transporterDao.findByTva(tva) ;
+    }
+
     @PutMapping("/{idTransporter}")
     public  ResponseEntity deleteTransporter(@PathVariable UUID idTransporter){
         return transporterDao.deleteTransporter(idTransporter) ;

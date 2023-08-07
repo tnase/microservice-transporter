@@ -12,5 +12,7 @@ import java.util.UUID;
 public interface TransporterRepository extends JpaRepository<TransporterEntity, UUID> {
     @Query("SELECT t FROM TransporterEntity t WHERE t.date_deleted IS NULL")
     List<TransporterEntity> findTransportersNotDeleted();
+    @Query("SELECT t FROM TransporterEntity t WHERE t.date_deleted IS NULL AND LOWER(t.tva) LIKE LOWER(CONCAT('%', :tva, '%'))")
+    TransporterEntity findByTva(String tva);
 
 }
