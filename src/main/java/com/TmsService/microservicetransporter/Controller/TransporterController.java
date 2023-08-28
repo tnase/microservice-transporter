@@ -25,9 +25,9 @@ public class TransporterController {
         return transporterDao.getTransporter(idTransporter) ;
     }
 
-    @GetMapping("/find/{tva}")
-    public  ResponseEntity getTransporterByTva(@PathVariable String tva){
-        return transporterDao.findByTva(tva) ;
+    @GetMapping("/find/{KeySearch}")
+    public  ResponseEntity getTransporterByTva(@PathVariable String KeySearch){
+        return transporterDao.findByTva(KeySearch) ;
     }
 
     @PutMapping("/{idTransporter}")
